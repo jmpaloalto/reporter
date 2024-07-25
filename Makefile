@@ -7,18 +7,18 @@ TARGET:=$(GOPATH)/bin/grafana-reporter
 ifeq ($(OS),Windows_NT)
 	TARGET:=$(GOPATH)/bin/grafana-reporter.exe
 endif
-SRC:=$(GOPATH)/src/github.com/jmcgrath/reporter
+SRC:=$(GOPATH)/src/github.com/jmpaloalto/reporter
 
 .PHONY: buildall
 buildall: build buildlinux
 
 .PHONY: build
 build: 
-	go install -v github.com/jmcgrath/reporter/cmd/grafana-reporter@latest
+	go install -v github.com/jmpaloalto/reporter/cmd/grafana-reporter@latest
 
 .PHONY: buildlinux 
 buildlinux: 	
-	cmd //v //c "set GOOS=linux&&go install -v github.com/jmcgrath/reporter/cmd/grafana-reporter"
+	cmd //v //c "set GOOS=linux&&go install -v github.com/jmpaloalto/reporter/cmd/grafana-reporter"
 
 .PHONY: clean
 clean: 	
@@ -26,10 +26,10 @@ clean:
 
 .PHONY: docker-build
 docker-build:
-	@docker build -t jmcgrath/grafana-reporter:2.3.0 -t jmcgrath/grafana-reporter:latest .
+	@docker build -t jmcgrath/grafana-reporter:2.3.0 -t jmpaloalto/grafana-reporter:latest .
 
 docker-push:
-	@docker push jmcgrath/grafana-reporter
+	@docker push jmpaloalto/grafana-reporter
 
 .PHONY: test
 test: $(TARGET)
